@@ -5,7 +5,7 @@ packaging_format = 2
 id = "bookshelfng"
 name = "BookshelfNG"
 description.en = "An evolution of Readarr with more ebook and audiobook metadata, edition matching, formats, and integrations"
-version = "0.4.21.37~ynh1"
+version = "0.4.21.37~ynh2"
 maintainers = ["snapetech"]
 
 [upstream]
@@ -66,7 +66,7 @@ ram.runtime = "1G"
   main.default = 8787
 
   [resources.apt]
-  packages = ["libsqlite3-0", "rsync"]
+  packages = ["ffmpeg", "libsqlite3-0", "rsync"]
   packages_from_raw_bash = """
   set -eu
 

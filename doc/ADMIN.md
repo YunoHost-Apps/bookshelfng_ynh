@@ -16,7 +16,7 @@ BookshelfNG also writes rotating application logs under `/home/yunohost.app/<app
 
 The service runs as the YunoHost app account (`bookshelfng`, or the instance name for additional installations). Give that account read and write access to the existing book, audiobook, download, and completed-download folders it needs. Those folders are outside the app's own backup and must be backed up separately.
 
-FFmpeg is optional. Install it with `sudo apt install ffmpeg` if you want BookshelfNG's chaptered audiobook merge feature, then enable that feature in BookshelfNG settings.
+FFmpeg is installed with the package for BookshelfNG's chaptered audiobook merge feature. Enable that feature in BookshelfNG settings when you want to use it.
 
 ## Data, backup, and upgrades
 
