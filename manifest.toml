@@ -5,12 +5,11 @@ packaging_format = 2
 id = "bookshelfng"
 name = "BookshelfNG"
 description.en = "An evolution of Readarr with more ebook and audiobook metadata, edition matching, formats, and integrations"
-version = "0.4.21.37~ynh2"
+version = "0.4.21.37~ynh3"
 maintainers = ["snapetech"]
 
 [upstream]
 license = "GPL-3.0-or-later"
-website = "https://github.com/snapetech/bookshelfng"
 userdoc = "https://github.com/snapetech/bookshelfng#readme"
 admindoc = "https://github.com/snapetech/bookshelfng/blob/main/docs/standalone-install.md"
 code = "https://github.com/snapetech/bookshelfng"
@@ -23,6 +22,7 @@ multi_instance = true
 ldap = false
 sso = false
 disk = "1G"
+ram.build = "50M"
 ram.runtime = "1G"
 
 [install]
