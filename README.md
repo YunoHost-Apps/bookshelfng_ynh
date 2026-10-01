@@ -10,7 +10,7 @@ It shall NOT be edited by hand.
 
 An evolution of Readarr with more ebook and audiobook metadata, edition matching, formats, and integrations
 
-[![Version: 0.4.21.37~ynh7](https://img.shields.io/badge/Version-0.4.21.37~ynh7-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/bookshelfng/)
+[![Version: 0.4.21.37~ynh8](https://img.shields.io/badge/Version-0.4.21.37~ynh8-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/bookshelfng/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/bookshelfng"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
