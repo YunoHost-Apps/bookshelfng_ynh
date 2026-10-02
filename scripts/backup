@@ -1,41 +1,35 @@
 #!/bin/bash
 
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+# Keep this path for calling _common.sh inside the execution's context of backup and restore scripts
 source ../settings/scripts/_common.sh
+source /usr/share/yunohost/helpers
 
-service_was_active=false
+ynh_print_info "Declaring BookshelfNG files to be backed up..."
 
-finish_backup() {
-	local exit_code=$?
-	trap - EXIT
-	if [[ "$service_was_active" == true ]]; then
-		ynh_systemctl --service="$app" --action="start" || exit_code=$?
-	fi
-	if [[ "$exit_code" == 0 ]]; then
-		true
-	else
-		false && true
-	fi
-	ynh_exit_properly
-}
+### ynh_backup declares the paths to include. YunoHost copies them after this
+### script completes, which also lets it report backup progress correctly.
 
-trap finish_backup EXIT
+#=================================================
+# BACKUP THE DATA DIR
+#=================================================
+ynh_backup "$data_dir"
 
-if systemctl is-active --quiet "$app"; then
-	service_was_active=true
-	ynh_script_progression "Stopping BookshelfNG for a consistent database backup..."
-	ynh_systemctl --service="$app" --action="stop"
-fi
+#=================================================
+# BACKUP THE APP MAIN DIR
+#=================================================
+ynh_backup "$install_dir"
 
-ynh_script_progression "Snapshotting BookshelfNG configuration and database..."
-mkdir -p "$YNH_APP_BACKUP_DIR/data"
-rsync --archive --delete \
-	--exclude="/cache/" \
-	--exclude="/logs/" \
-	"$data_dir/" "$YNH_APP_BACKUP_DIR/data/"
+#=================================================
+# BACKUP SYSTEM CONFIGURATION
+#=================================================
+ynh_backup "/etc/nginx/conf.d/$domain.d/$app.conf"
+ynh_backup "/etc/systemd/system/$app.service"
 
-ynh_print_info "Declaring BookshelfNG files for backup..."
-ynh_backup --src_path="$install_dir" --is_big
-ynh_backup --src_path="/etc/nginx/conf.d/$domain.d/$app.conf"
-ynh_backup --src_path="/etc/systemd/system/$app.service"
-
-ynh_print_info "BookshelfNG backup declaration completed"
+#=================================================
+# END OF SCRIPT
+#=================================================
+ynh_print_info "Backup script completed for $app. (YunoHost will then copy the declared files to the archive)."
